@@ -1,4 +1,4 @@
-# Aula 2 - Componentes de um Drone
+# Aula 2 - Componentes de um Drone (Noia)
 
 ## Overview
 
