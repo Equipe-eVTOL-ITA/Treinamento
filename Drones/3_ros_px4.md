@@ -51,9 +51,8 @@ ROS_PYTHON_VERSION=3
 ROS_DISTRO=foxy
 ```
 
-#### 3.1 A variável ```python
-ROS_DOMAIN_ID
-```
+#### 3.1 A variável ```ROS_DOMAIN_ID```
+
 
 ## PX4
 
