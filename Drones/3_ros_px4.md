@@ -11,31 +11,22 @@
 
 ## ROS2
 
+### O que é ROS?
+
+ROS (Robot Operating System) é uma coleção de frameworks de software, isto é, uma abstração que une códigos comuns a diversos projetos de software provendo alguma funcionalidade, ou ainda, de maneira mais genérica, um conjunto de bibliotecas de software e ferramentas que auxiliam no desenvolvimento de aplicações para robótica. O link a seguir contém um vídeo explicando o que é ROS de maneira mais detalhada <https://vimeo.com/639236696>. Para instalar o ROS2 acesse o link <https://docs.ros.org/en/foxy/Installation.html>.
+
+### Configuração de ambiente
+
+ROS2 se baseia na combinação de workspaces utilizando o shell environment, uma interface entre o usuário e o kernel, um programa no núcleo do sistema operacional que geralmente possui controle sobre tudo no sistema. Worksapce é um termo de ROS para a localização no seu sistema de onde você está desenvolvendo utilizando ROS2. o principal workspace de ROS2 é chamado de underlay enquanto que workspaces subsequentes sãom chamados de overlay.
+
+#### Source the setup files
+
+Você precisará executar esse comando em cada nova shell que abrir para ter acesso aos comandos do ROS2.
+
+
 ## PX4
 
 ## MAVLink
-
-Tópicos:  PX4; MavLINK; ROS2.
-
-## Tópico 1
-
-List the main topics that will be covered during the class or tutorial.
-
-
-## Tópico 2
-
-List the main topics that will be covered during the class or tutorial.
-
-
-## Tópico 3
-
-List the main topics that will be covered during the class or tutorial.
-
-
-## Tópico 4
-
-List the main topics that will be covered during the class or tutorial.
-
 
 ## Exemplos de código, imagens e tabelas
 
@@ -61,9 +52,11 @@ def example_function():
 É a aula sobre como nosso drone funciona de fato. Vamos falar sobre ROS2 (Topics, Subscriptions, Messages), PX4 e MavLINK (mensagens, comunicação, conexão). 
 Obs: prof. Vinicius vai auxiliar nessa aula. Mandar o esboço dessa aula quando for concluída para que ele veja e opine.
 
-
 ## Referências
 
 Não precisa ser robusto e colocar TODOS os sites. Basta colocar os mais relevantes, onde a pessoa possa encontrar mais informações ou onde possa ter a referência original da matéria.
 
 [def]: #license
+
+[1] <https://docs.ros.org/en/foxy/Tutorials.html>
+[2] <https://pt.wikipedia.org/wiki/Robot_operating_system>
