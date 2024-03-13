@@ -17,7 +17,7 @@ ROS (Robot Operating System) é uma coleção de frameworks de software, isto é
 
 ### Configuração de ambiente
 
-ROS2 se baseia na combinação de workspaces utilizando o shell environment, uma interface entre o usuário e o kernel, um programa no núcleo do sistema operacional que geralmente possui controle sobre tudo no sistema. Worksapce é um termo de ROS para a localização no seu sistema de onde você está desenvolvendo utilizando ROS2. o principal workspace de ROS2 é chamado de underlay enquanto que workspaces subsequentes sãom chamados de overlay.
+ROS2 se baseia na combinação de workspaces utilizando o shell environment, uma interface entre o usuário e o kernel, um programa no núcleo do sistema operacional que geralmente possui controle sobre tudo no sistema. Worksapce é um termo de ROS para a localização no seu sistema de onde você está desenvolvendo utilizando ROS2. o principal workspace de ROS2 é chamado de underlay enquanto que workspaces subsequentes são chamados de overlay.
 
 #### 1 Source the setup files
 
@@ -37,7 +37,23 @@ echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
 
 #### 3 check environment variables
 
+Sourcing ROS2 setup files irá definir várias variáveis do ambiente necessárias para operar o ROS2. Caso tenha algum problema para achar ou usar os pacotes de ROS2, verifique que o ambiente foi setado corretamente.
 
+```python
+printenv | grep -i ROS
+```
+
+Confira que as variáveis como ROS_DISTRO e ROS_VERSION estão setadas. Por exemplo, se você está usando o Foxy,você verá:
+
+```python
+ROS_VERSION=2
+ROS_PYTHON_VERSION=3
+ROS_DISTRO=foxy
+```
+
+#### 3.1 A variável ```python
+ROS_DOMAIN_ID
+```
 
 ## PX4
 
