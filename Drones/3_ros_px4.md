@@ -19,9 +19,24 @@ ROS (Robot Operating System) é uma coleção de frameworks de software, isto é
 
 ROS2 se baseia na combinação de workspaces utilizando o shell environment, uma interface entre o usuário e o kernel, um programa no núcleo do sistema operacional que geralmente possui controle sobre tudo no sistema. Worksapce é um termo de ROS para a localização no seu sistema de onde você está desenvolvendo utilizando ROS2. o principal workspace de ROS2 é chamado de underlay enquanto que workspaces subsequentes sãom chamados de overlay.
 
-#### Source the setup files
+#### 1 Source the setup files
 
 Você precisará executar esse comando em cada nova shell que abrir para ter acesso aos comandos do ROS2.
+
+```python
+source /opt/ros/foxy/setup.bash
+```
+
+#### 2 Add sourcing to your shell startup script
+
+Se você não quiser realizar o comando anterior toda vez que abrir uma nova shell (pular 1), então você pode adicionar o comando ao script de inicialização da shell.
+
+```python
+echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
+```
+
+#### 3 check environment variables
+
 
 
 ## PX4
