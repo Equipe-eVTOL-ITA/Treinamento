@@ -15,7 +15,7 @@
 
 ROS (Robot Operating System) é uma coleção de frameworks de software, isto é, uma abstração que une códigos comuns a diversos projetos de software provendo alguma funcionalidade, ou ainda, de maneira mais genérica, um conjunto de bibliotecas de software e ferramentas que auxiliam no desenvolvimento de aplicações para robótica. O link a seguir contém um vídeo explicando o que é ROS de maneira mais detalhada <https://vimeo.com/639236696>. Para instalar o ROS2 acesse o link <https://docs.ros.org/en/foxy/Installation.html>.
 
-### Configuração de ambiente
+### Configurando o ambiente
 
 ROS2 se baseia na combinação de workspaces utilizando o shell environment, uma interface entre o usuário e o kernel, um programa no núcleo do sistema operacional que geralmente possui controle sobre tudo no sistema. Worksapce é um termo de ROS para a localização no seu sistema de onde você está desenvolvendo utilizando ROS2. o principal workspace de ROS2 é chamado de underlay enquanto que workspaces subsequentes são chamados de overlay.
 
