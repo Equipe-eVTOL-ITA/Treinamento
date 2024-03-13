@@ -1,12 +1,5 @@
 # Aula 3 - Middleware e Robótica: ROS2, PX4 e MAVLink (Sheik e Velha)
 
-## Overview
-
-É a aula sobre como nosso drone funciona de fato. Vamos falar sobre ROS2 (Topics, Subscriptions, Messages), PX4 e MavLINK (mensagens, comunicação, conexão). 
-Obs: prof. Vinicius vai auxiliar nessa aula. Mandar o esboço dessa aula quando for concluída para que ele veja e opine.
-
-Tópicos:  PX4; MavLINK; ROS2.
-
 ## Conteúdo
 
 - [Tópico 1](#tópico-1)
@@ -15,6 +8,14 @@ Tópicos:  PX4; MavLINK; ROS2.
 - [Tópico 4](#tópico-4)
 - [Exemplos](#exemplos-de-código-imagens-e-tabelas)
 - [Referências](#referências)
+
+## ROS2
+
+## PX4
+
+## MAVLink
+
+Tópicos:  PX4; MavLINK; ROS2.
 
 ## Tópico 1
 
@@ -54,6 +55,11 @@ def example_function():
 | Row 1, Col 1    | Row 1, Col 2    | Row 1, Col 3    |
 | Row 2, Col 1    | Row 2, Col 2    | Row 2, Col 3    |
 | Row 3, Col 1    | Row 3, Col 2    | Row 3, Col 3    |
+
+## Overview
+
+É a aula sobre como nosso drone funciona de fato. Vamos falar sobre ROS2 (Topics, Subscriptions, Messages), PX4 e MavLINK (mensagens, comunicação, conexão). 
+Obs: prof. Vinicius vai auxiliar nessa aula. Mandar o esboço dessa aula quando for concluída para que ele veja e opine.
 
 
 ## Referências
