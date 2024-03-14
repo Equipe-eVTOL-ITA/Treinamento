@@ -3,12 +3,12 @@
 ## Conteúdo
 
 - [O que é ROS?](#o-que-é-ros)
-- [Configurando o ambiente](#tópico-2)
-- [Entendendo nós](#tópico-3)
-- [Entendendo tópicos](#tópico-4)
-- [Entendendo serviços](#tópico-5)
-- [Entendendo parâmetros](#tópico-6)
-- [Entendendo ações](###tópico-7)
+- [Configurando o ambiente](#configurando-o-ambiente)
+- [Entendendo nós](#entendendo-nós)
+- [Entendendo tópicos](#entendendo-tópicos)
+- [Entendendo serviços](#entendendo-serviços)
+- [Entendendo parâmetros](#entendendo-parâmetros)
+- [Entendendo ações](#entendendo-ações)
 - [Exemplos](#exemplos-de-código-imagens-e-tabelas)
 - [Referências](#referências)
 
