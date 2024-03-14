@@ -443,6 +443,53 @@ Você pode ver que o nó ```/turtlesim``` também está publicando no tópico ``
 
 #### 8 ros2 topic hz
 
+Para uma última verificação nesse processo, você pode verificar a taxa coma a qual os dados são publicados utilizando:
+
+```python
+ros2 topic hz /turtle1/pose
+```
+
+Os dados serão retornados na mesma taxa com a qual o nó ```/turtlesim``` está enviando dados através do tópico ```pose```.
+
+```python
+average rate: 59.354
+  min: 0.005s max: 0.027s std dev: 0.00284s window: 58
+```
+
+Lembre-se que você definiu a taxa de publicação do ```/turtle1/cmd_vel``` a 1 Hz utilizando ```ros2 topic pub --rate 1```. Se você executar o comando acima com ```/turtle1/cmd_vel``` ao invés de ```turtle1/pose```, você verá uma média refletindo essa taxa.
+
+#### 9 Clean up
+
+Nesse momento, você terá vários nós sendo executados. Não se esqueça de encerrá-los utilizando ```Ctrl + C``` em cada terminal.
+
+### Entendendo Serviços
+
+### Background
+
+Serviços são outro método para a comunicação de nós em um gráfico de ROS. Serviços são baseados em um modelo de chamada e resposta ao contrário do modelo emissor-receptor dos tópicos. Enquanto tópicos permitem que os nós recebam fluxos de dados e obtenham atualizações constantes, serviços fornecem dados apenas quando eles são especificamente chamados por um cliente.
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/3799a137-8bce-464f-ad31-30993d61c711)
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/39c82f4d-e9ea-48fb-9cb0-5c1b4f850584)
+
+### Tasks
+
+#### 1 Setup
+
+```python
+ros2 run turtlesim turtlesim_node
+```
+
+Abra outro terminal e insira
+
+```python
+ros2 run turtlesim turtle_teleop_key
+```
+
+#### 2 ros2 service list 
+
+
+
 ## PX4
 
 ## MAVLink
