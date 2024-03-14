@@ -83,7 +83,13 @@ Para manter essa configuração entre sessões de shell, você pode adicionar o 
 echo "export ROS_LOCALHOST_ONLY=1" >> ~/.bashrc
 ```
 
+### Pré-requisitos
+
+O link a seguir contém o tutorial para instalar os programas que serão utilizados para melhor compreensão dos conceitos de ROS que serão vistos em diante <https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html>
+
 ### Entendendo nós
+
+### Background
 
 #### 1 O "gráfico" de ROS2
 
@@ -95,8 +101,11 @@ Cada nó em ROS deve ser responsável por um único propósito, por exemplo, con
 
 ![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/c338dcb5-87ee-4600-a9a8-d51ddb9ee428)
 
+### Tasks
 
-<https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html>
+##### 1 ros2 run
+
+
 
 ## PX4
 
