@@ -219,6 +219,118 @@ Agora, tente rodar o mesmo comando no nó ```/teleop_turtle``` e veja como suas 
 
 ### Entendendo tópicos
 
+### Background
+
+ROS2 desmembra sistemas complexos em vários nós modulares. Tópicos são um elemento vital do gráfico de ROS que agem como um ônibus para a troca de mensagens entre os nós.
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/034c10a9-6edc-4f30-be5a-b4751d873b29)
+
+Um nó pode enviar dados para qualquer número de tópicos e simultaneamente receberem mensagens de qualquer número de tópicos.
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/701bb3d8-0406-4309-a754-2c7780219eb4)
+
+Tópicos são uma das maneiras de se transferir dados entre nós e, portanto, entre diferentes partes de um sistema.
+
+### Tasks
+
+#### 1 Setup
+
+Abra um terminal e insira:
+
+```python
+ros2 run turtlesim turtlesim_node
+```
+
+Abra outro terminal e insira
+
+```python
+ros2 run turtlesim turtle_teleop_key
+```
+
+Lembre-se que o nome padrão para esses nós são ```/turtlesim``` e ```/teleop_turtle```.
+
+#### 2 rqt_graph
+
+Nós usaremos ```rqt_graph``` para visualizar a mudança de nós e tópicos, bem como as conexões entre eles.
+
+Para executar o rqt_graph abra outro terminal e insira o comando:
+
+```python
+rqt_graph
+```
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/3e05ad5d-8954-4223-9083-022505ffb388)
+
+Você deve ver os nós e tópicos acima, bem como as duas ações perto das margens do gráfico (vamos ignorá-las por enquanto). Se você colocar o mouse no tópico no centro, você verá a cor se destacando como na imagem acima.
+
+O gráfico está mostrando como os nós ```/turtlesim``` e ```teleop_turtle``` estão se comunicando um com o outro através de um tópico. O nó ```teleop_turtle``` está enviando dados (teclas digitadas para mover a tartaruga) para o tópico ```/turtle1/cmd_vel``` e o nó ```/turtlesim``` está recebendo esses dados.
+
+#### 3 ros2 topic list
+
+Inseririr o comando ```ros2 topic list``` irá retornar uma lista com todos os tópicos ativos no sistema.
+
+```python
+/parameter_events
+/rosout
+/turtle1/cmd_vel
+/turtle1/color_sensor
+/turtle1/pose
+```
+
+```ros2 topic list -t``` irá retornar a mesma lista de tópicos, dessa vez contendo o tipo do tópico entre colchetes:
+
+```python
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/rosout [rcl_interfaces/msg/Log]
+/turtle1/cmd_vel [geometry_msgs/msg/Twist]
+/turtle1/color_sensor [turtlesim/msg/Color]
+/turtle1/pose [turtlesim/msg/Pose]
+```
+
+Esses atributos, em particular o tipo, são como os nós sabem que estão conversando sobre a mesma informação conforme ela se move através dos tópicos.
+
+Se você quiser visualizar todos esses tópicos no rqt_graph, você pode dar uncheck em todas as caixinhas em Hide:
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/22b67f06-61e9-4ce2-98ed-21d0a52481ef)
+
+#### 4 ros2 topic echo
+
+Para ver os dados sendo publicados em um tópico, use:
+
+```python
+ros2 topic echo <topic_name>
+```
+
+Já que sabemos que o ```/teleop_turtle``` envia dados para o ```/turtlesim``` através do tópico ```/turtle1/cmd_vel``` vamos utilizar o ```echo``` para verificar o que o tópico está publicando:
+
+```python
+ros2 topic echo /turtle1/cmd_vel
+```
+
+A princípio, esse comando não retornará nenhum dado. Isso ocorre pois ele está esperando que o ```/teleop_turtle``` publique alguma coisa.
+
+Retorne ao terminal em que o ```turtle_teleop_key``` está sendo executado e use as setinhas para mover a tartaruga. Observe o terminal onde o ```echo``` está sendo executado ao mesmo tempo, você verá os dados da posição sendo exibidos para cada movimento que você fizer.
+
+```python
+linear:
+  x: 2.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+  ---
+```
+
+Agora, retorne ao rqt_graph e dê uncheck na caixinha Debug.
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/0be06c7d-714d-4596-90d0-f60f0bcae7ce)
+
+```/_ros2cli_26646``` é o nó criado pelo comando ```echo``` que acabou de ser executado (o número pode ser diferente). Agora você pode verificar que o emissor está enviando dados através do tópico ```cmd_vel``` e que há dois receptores conectados a ele.
+
+#### 5 ros2 topic info
+
 ## PX4
 
 ## MAVLink
