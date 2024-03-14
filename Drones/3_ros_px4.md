@@ -85,7 +85,7 @@ echo "export ROS_LOCALHOST_ONLY=1" >> ~/.bashrc
 
 ### Pré-requisitos
 
-O link a seguir contém o tutorial para instalar os programas que serão utilizados para melhor compreensão dos conceitos de ROS que serão vistos em diante <https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html>
+O link a seguir contém o tutorial para instalar os programas que serão utilizados para melhor compreensão dos conceitos de ROS que serão vistos a diante <https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html>
 
 ### Entendendo nós
 
@@ -105,7 +105,119 @@ Cada nó em ROS deve ser responsável por um único propósito, por exemplo, con
 
 ##### 1 ros2 run
 
+O comando ```ros2 run``` lança um executável de um pacote.
 
+```python
+ros2 run <package_name> <executable_name>
+```
+
+Para abrir o turtlesim, abra um novo terminal e insira o seguinte comando:
+
+```python
+ros2 run turtlesim turtlesim_node
+```
+
+Aqui, o nome do pacote é ```turtlesim``` e o nome do executável é ```turtlesim_node```.
+
+Nós ainda não sabemos o nome do nó, mas podemos descobrir usando ```ros2 node list```.
+
+#### 2 ros2 node list
+
+```ros2 node list``` irá mostrar o nome de todos os nós sendo executados.
+
+Abra um novo terminal enquanto o turtlesim ainda está rodando no outro e insira o seguinte comando:
+
+```python
+ros2 node list
+```
+
+O terminal irá retornar o nome do nó:
+
+```python
+/turtlesim
+```
+
+Abra outro terminal e inicie o nó teleop com o comando:
+
+```python
+ros2 run turtlesim turtle_teleop_key
+```
+
+Aqui, estamos nos referindo ao pacote ```turtlesim``` de novo, mas, dessa vez nós estamos interessados no executável ```turtle_teleop_key```.
+
+Retorne ao terminal em que você rodou ```ros2 node list``` e insira o comando novamente. Você agora verá o nome de dois nós ativos:
+
+```python
+/turtlesim
+/teleop_turtle
+```
+
+#### 2.1 Remapping 
+
+Remapping permite que você redefina propriedades padrão do nó, como o nome do nó, o nome do tópico, o nome do serviço, etc., para valores personalizados. 
+
+Agora, vamos redefinir o nome do nosso nó ```turtlesim```. Em um novo terminal, insira o seguinte comando:
+
+```python
+ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle
+```
+
+Como você está inserindo o comando ```ros2 run``` para o turtlesim de novo, outra janela do turtlesim será aberta. No entanto, se você retornar ao terminal em que inseriu ```ros2 node list``` e inserir o comando novamente, você verá o nome de três nós:
+
+```python
+/turtlesim
+/teleop_turtle
+/my_turtle
+```
+
+#### 3 ros2 node info
+
+Agora que você sabe o nome dos seus nós, você consegue acessar mais informações sobre eles com:
+
+```python
+ros2 node info <node_name>
+```
+
+Para investigar seu último nó, ```my_turtle```, insira o seguinte comando:
+
+```python
+ros2 node info /my_turtle
+```
+
+```ros2 node list``` retorna uma lista de subscribers, publishers, serviços e ações, isto é, o gráfico ROS das conexões que interagem com aquele nó. A saída deve parecer com:
+
+```python
+/my_turtle
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /turtle1/cmd_vel: geometry_msgs/msg/Twist
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /turtle1/color_sensor: turtlesim/msg/Color
+    /turtle1/pose: turtlesim/msg/Pose
+  Services:
+    /clear: std_srvs/srv/Empty
+    /kill: turtlesim/srv/Kill
+    /reset: std_srvs/srv/Empty
+    /spawn: turtlesim/srv/Spawn
+    /turtle1/set_pen: turtlesim/srv/SetPen
+    /turtle1/teleport_absolute: turtlesim/srv/TeleportAbsolute
+    /turtle1/teleport_relative: turtlesim/srv/TeleportRelative
+    /my_turtle/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /my_turtle/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /my_turtle/get_parameters: rcl_interfaces/srv/GetParameters
+    /my_turtle/list_parameters: rcl_interfaces/srv/ListParameters
+    /my_turtle/set_parameters: rcl_interfaces/srv/SetParameters
+    /my_turtle/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Action Servers:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+  Action Clients:
+```
+
+Agora, tente rodar o mesmo comando no nó ```/teleop_turtle``` e veja como suas conexões são diferentes das do ```/my_turtle```.
+
+### Entendendo tópicos
 
 ## PX4
 
