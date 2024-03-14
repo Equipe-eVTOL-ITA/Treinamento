@@ -39,7 +39,7 @@ Se você não quiser realizar o comando anterior toda vez que abrir uma nova she
 echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
 ```
 
-#### 3 check environment variables
+#### 3 Check environment variables
 
 Sourcing ROS2 setup files irá definir várias variáveis do ambiente necessárias para operar o ROS2. Caso tenha algum problema para achar ou usar os pacotes de ROS2, verifique que o ambiente foi setado corretamente.
 
@@ -57,6 +57,46 @@ ROS_DISTRO=foxy
 
 #### 3.1 A variável ```ROS_DOMAIN_ID```
 
+Uma vez que você tenha determinado um único inteiro para o seu grupo de nós de ROS2,você consegue setar as variáveis do ambiente:
+
+```python
+export ROS_DOMAIN_ID=<your_domain_id>
+```
+
+Para manter essa configuração entre sessões de shell, você pode adicionar o comando ao script de inicialização da shell.
+
+```python
+echo "export ROS_DOMAIN_ID=<your_domain_id>" >> ~/.bashrc
+```
+
+#### 3.2 A variável ```ROS_LOCALHOST_ONLY```
+
+Por definição, a comunicação do ROS2 não é limitada ao host local. A variável ```ROS_LOCALHOST_ONLY``` permite que você restrinja a comunicação ao host local. Isso significa que o seu sistema de ROS2, e seus tópicos, serviços e ações não serão visíveis para outros computadores no network local. 
+
+```python
+export ROS_LOCALHOST_ONLY=1
+```
+
+Para manter essa configuração entre sessões de shell, você pode adicionar o comando ao script de inicialização da shell.
+
+```python
+echo "export ROS_LOCALHOST_ONLY=1" >> ~/.bashrc
+```
+
+### Entendendo nós
+
+#### 1 O "gráfico" de ROS2
+
+O gráfico de ROS é um network de elementos de ROS2 processando dados juntos simultaneamente. O gráfico abrange todos os executáveis e todas as conexões entre eles se você fosse mapeá-los e visualzá-los.
+
+#### 2 Nós em ROS2
+
+Cada nó em ROS deve ser responsável por um único propósito, por exemplo, controlar o motor de uma roda ou publicar os dados de um sensor de medição de distância laser. Cada nó pode enviar e receber dados de outros nós via tópicos, serviços, parâmetros e ações.
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/c338dcb5-87ee-4600-a9a8-d51ddb9ee428)
+
+
+<https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html>
 
 ## PX4
 
