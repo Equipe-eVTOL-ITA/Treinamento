@@ -488,6 +488,82 @@ ros2 run turtlesim turtle_teleop_key
 
 #### 2 ros2 service list 
 
+Executar o comando ```ros2 service list``` em um novo terminal irá retornar uma lista de todos os serviços atualmente ativos no sistema:
+
+```python
+/clear
+/kill
+/reset
+/spawn
+/teleop_turtle/describe_parameters
+/teleop_turtle/get_parameter_types
+/teleop_turtle/get_parameters
+/teleop_turtle/list_parameters
+/teleop_turtle/set_parameters
+/teleop_turtle/set_parameters_atomically
+/turtle1/set_pen
+/turtle1/teleport_absolute
+/turtle1/teleport_relative
+/turtlesim/describe_parameters
+/turtlesim/get_parameter_types
+/turtlesim/get_parameters
+/turtlesim/list_parameters
+/turtlesim/set_parameters
+/turtlesim/set_parameters_atomically
+```
+
+Você consegue perceber que ambos os nós possuem os mesmos seis serviços com ```parameters``` no nome. Praticamente todo nó em ROS2 possui esses serviços básicos dos quais os parâmetros são feitos. Veremos mais sobre parâmetros depois. 
+
+Por enquanto, vamos focar nos serviços específicos do turtlesim, ```/clear```, ```/kill```, ```/reset```, ```/spawn```, ```/turtle1/set_pen```, ```/turtle1/teleport_absolut``` e ```/turtle1/teleport_relative```.
+
+#### 3 ros2 service type
+
+Serviços possuem tipos que descrevem como o pedido e o envio de dados são estruturados. Tipos de serviços são definidos de maneira similar aos tipos de tópicos, a diferença é que os tipos de serviço possuem dus partes: uma mensagem para o pedido e outra para a resposta.
+
+Par descobrir o tipo de serviço, use o comando:
+
+```python
+ros2 service type <service_name>
+```
+
+Vamos dar uma olhada no serviço ```/cleear``` do turtlesim. Em um novo terminal insira o comando:
+
+```python
+ros2 service type /clear
+```
+
+Que deve retornar:
+
+```python
+std_srvs/srv/Empty
+```
+
+O tipo ```Empty``` significa que o serviço não envia dados quando um pedido é feito e não recebe dados quando recebe uma resposta.
+
+#### 3.1 ros2 service list -t
+
+Para ver os tipos de todos os serviços ativos simultaneamente você pode anexar a opção ```--show-types```, abreviada como ```-t```, no comando ```list```:
+
+```python
+ros2 service list -t
+```
+
+Que irá retornar: 
+
+```python
+/clear [std_srvs/srv/Empty]
+/kill [turtlesim/srv/Kill]
+/reset [std_srvs/srv/Empty]
+/spawn [turtlesim/srv/Spawn]
+...
+/turtle1/set_pen [turtlesim/srv/SetPen]
+/turtle1/teleport_absolute [turtlesim/srv/TeleportAbsolute]
+/turtle1/teleport_relative [turtlesim/srv/TeleportRelative]
+...
+```
+
+#### 4 ros2 service find
+
 
 
 ## PX4
