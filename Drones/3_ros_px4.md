@@ -331,6 +331,118 @@ Agora, retorne ao rqt_graph e dê uncheck na caixinha Debug.
 
 #### 5 ros2 topic info
 
+Tópicos não necessariamente são comunicadores entre um emissor e um receptor, eles também podem ser utilizados para a comunicação entre um emissor e vários receptores, vários emissores e um receptor e vários emissores e vários receptores. 
+
+Outra maneira de ver isso é inserindo:
+
+```python
+ros2 topic info /turtle1/cmd_vel
+```
+
+Que retornará:
+
+```python
+Type: geometry_msgs/msg/Twist
+Publisher count: 1
+Subscription count: 2
+```
+
+#### 6 ros2 interface show
+
+Nós enviam dados através de tópicos utilizando mensagens. Publishers e subscribers devem enviar e receber o mesmo tipo de mensagem para se comunicarem.
+
+Os tipos de tópicos que vimos anteriormente após inserir ```ros2 topic list -t``` nos permitem saber qual o tipo de mensagem é usado em cada tópico. Lembre-se que o tópico ```cmd_vel``` tem o tipo:
+
+```python
+geometry_msgs/msg/Twist
+```
+
+Isso significa que dentro do pacote ```geometry_msgs``` tem uma ```msg``` chamada ```twist```.
+
+Agora podemos executar ```ros2 interface show <msg_type>``` nesse tipo de mensagem para aprender seus detalhes. Especificamente, qual a estrutura de dados da mensagem.
+
+```python
+ros2 interface show geometry_msgs/msg/Twist
+```
+
+Para o tipo de mensagem acima temos:
+
+```python
+# Isso expressa a velocidade em um espaço livre decomposta em suas partes linear e angular.
+
+    Vector3  linear
+    Vector3  angular
+```
+
+Isso nos diz que o nó ```/turtlesim``` está esperando uma mensagem com dois vetores, ```linear``` e ```angular```, de três elementos cada. Se você se recordar dos dados que vimos o ```teleop_turtle``` transmitindo para o ```/turtlesim``` com o comando ```echo```, eles possuem a mesma estrutura:
+
+```python
+linear:
+  x: 2.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+  ---
+```
+
+#### 7 ros2 topic pub
+
+Agora que você sabe a estrutura da mensagem, você pode publicar dados em um tópico diretamente da linha de comando usando:
+
+```python
+ros2 topic pub <topic_name> <msg_type> '<args>'
+```
+
+Os argumentos ```'<args>'``` são os dados que você irá transmitir, de fato, ao tópico, na estrutura que você descobriu anteriormente.
+
+É importante notar que esse argumento precisa ser inserido na syntax YAML. Insira o comando completo assim:
+
+```python
+ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
+```
+
+```--once``` é um argumento opcional que significa "publique uma mensagem e saia".
+
+Você verá a seguinte saída no terminal:
+
+```python
+publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=2.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=1.8))
+```
+
+E você verá a tartaruga se movendo assim: 
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/c79db178-56d1-43ff-b2cd-bca0c249ef55)
+
+A tartaruga (e comummente os robôs reais que devem ser emulados) requerem um fluxo constante de comandos para operarem continuamente. Então, para fazer com que a tartaruga continue se movendo, insira:
+
+```python
+ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
+```
+
+A diferença aqui é a remoção da opção ```--once``` e a adição da opção ```--rate 1``` que diz ao ```ros2 topic pub``` para publicar o comando a uma taxa constante de 1 Hz.
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/fcb9eba9-fd72-4d14-bcb3-4fe0fc8e1e99)
+
+Você pode atualizar o rqt_graph para ver o que eestá acontecendo graficamente. Você verá que o  ```ros2 topic pub ...``` node (```/_ros2cli_30358```) está publicando através do tópico ```turtle1/cmd_vel```, e que ambos ```ros2 topic echo ...``` node (```/_ros2cli_30358```) e o nó ```/turtlesim``` estão recebendo.
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/70152075-f9c4-4b35-8426-b2ba0deb9f21)
+
+Finalmente, você pode inserir ```echo``` no tópico ```pose``` e verificar novamente o rqt_graph:
+
+```python
+ros2 topic echo /turtle1/pose
+```
+
+![image](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/142051901/3c2583b0-8abd-46e5-b470-38f519c2b44b)
+
+Você pode ver que o nó ```/turtlesim``` também está publicando no tópico ```pose```, o qual o novo nó ```echo``` se inscreveu.
+
+#### 8 ros2 topic hz
+
 ## PX4
 
 ## MAVLink
