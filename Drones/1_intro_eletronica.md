@@ -13,7 +13,7 @@ Tópicos: Baterias; Motores; Solda; PWM; Protoboard.
 - [Tópico 1](#tópico-1)
 - [Tópico 2](#tópico-2)
 - [Tópico 3](#tópico-3)
-- [Tópico 4](#tópico-4)
+- [PWM e Protoboard](#tópico-4)
 - [Exemplos](#exemplos-de-código-imagens-e-tabelas)
 - [Referências](#referências)
 
@@ -34,8 +34,49 @@ List the main topics that will be covered during the class or tutorial.
 
 ## Tópico 4
 
-List the main topics that will be covered during the class or tutorial.
+Nesta parte da aula, são passados os conceitos básicos de sinais - analógico e digital - e a esquematização de um circuito em protoboard.
 
+O circuito escolhido para a realização dessa aula é um circuito simples de LED com potenciômetro, sendo exemplificados os conceitos de PWM para:
+
+1. LED piscando (sinal digital);
+2. Controle de luminosidade do LED (sinal analógico).
+
+O circuito montado é o seguinte:
+
+![Captura de tela 2024-03-27 154134](https://github.com/Equipe-eVTOL-ITA/Treinamento/assets/129911818/a2008646-61f7-4227-8def-7e171cd740fb)
+
+E os códigos em arudíno são:
+
+1. LED piscando:
+
+```
+void setup() {
+  pinMode(13, OUTPUT);
+  pinMode(A5, INPUT);
+}
+
+void loop() {
+  unsigned int valorPOT = analogRead(A5);
+  digitalWrite(13, HIGH);
+  delay(valorPOT);
+  digitalWrite(13, LOW);
+  delay(valorPOT);
+}
+```
+
+2. Controle de luminosidade:
+
+```
+void setup() {
+  pinMode(11, OUTPUT);
+  pinMode(A5, INPUT);
+}
+
+void loop() {
+  unsigned int valorPot = analogRead(A5);
+  analogWrite(11, byte(valorPot/4));
+}
+```
 
 ## Exemplos de código, imagens e tabelas
 
