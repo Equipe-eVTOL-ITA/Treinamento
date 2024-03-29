@@ -1,4 +1,4 @@
-# Aula 2 - Componentes de um eVTOL (Noia e KGB)
+# Aula 2 - Componentes de um eVTOL (14 e KGB)
 
 ## Overview
 
