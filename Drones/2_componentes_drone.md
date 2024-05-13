@@ -190,25 +190,3 @@ Não há muito segredo. É Uma placa de distribuição centralizada de energia. 
 Além disso, a PDB (Power Distribution Board) também tem circuitos com regulador de tensão, convertendo o sinal da bateria (11.1V por exemplo) para 5V ou 12V, que são a tensão utilizada por alguns eletrônicos.
 
 <img src=../utils/PDB.png width=80%>
-
-## Controladora de Voo (PixHawk)
-
-IMUs, linguagem PX4 e ArduPilot
-
-## Computador de Bordo (Raspberry Pi)
-
-Comunicação Wifi (como se conecta ao computador), código de autonomia
-
-## Comunicação entre componentes no Drone
-
-MAVLink, PX4, Micro-UXRCE Agent, SSH, Telemetria, controle RC
-
-## Câmeras
-
-O que é odometria visual, visão computacional, SLAM, Nuvem de pontos, filtro de Kalman
-
-## Referências
-
-Não precisa ser robusto e colocar TODOS os sites. Basta colocar os mais relevantes, onde a pessoa possa encontrar mais informações ou onde possa ter a referência original da matéria.
-
-[def]: #license
