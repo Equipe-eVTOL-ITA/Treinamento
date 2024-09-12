@@ -94,7 +94,11 @@ bash bundles.sh up min_bundles
 
 ```bash
 docker login gitlab.liu.se:5000 -u wara -p LH1U2K_zXignv2PLF4mc
-git@gitlab.liu.se:lrs2/waraps_ss2023.git
+
+# Se em comandos futuros de docker-compose pull/up estiver enfrentando problemas de autenticação, tente usar:
+docker login registry.waraps.org
+#username: waraps
+##password: registry
 ```
 
 **5. Configurando o environment**
