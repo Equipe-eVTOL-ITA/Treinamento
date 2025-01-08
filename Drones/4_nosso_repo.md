@@ -8,6 +8,10 @@ Explicar o que você vai ensinar na aula.
 
 Tópicos: Finite State Machine (FSM); Blackboard; Classe Drone; GitHub.
 
+<img src=../utils/FSM_fase1.png width=120%> 
+
+<img src=../utils/arena_frtl.jpg width=120%> 
+
 ## Conteúdo
 
 - [Tópico 1](#tópico-1)
