@@ -14,8 +14,9 @@ class LandOnBasesFSM : public fsm::FSM {
 public:
     LandOnBasesFSM() : fsm::FSM({"ERROR", "FINISHED"}) {
 
-        // TODO: 1.1 Instancie a Classe Drone
-
+        // 1.1 Instancie a Classe Drone
+        this->blackboard_set<Drone>("drone", new Drone());
+        Drone* drone = blackboard_get<Drone>("drone");
 
         // SETANDO A HOME POSITION
         const Eigen::Vector3d fictual_home = Eigen::Vector3d({1.2, -1.0, -0.6});
@@ -32,14 +33,39 @@ public:
         bases.push_back({Eigen::Vector3d({6.0, -3.0, -0.005})}); //landing platform 2
         bases.push_back({Eigen::Vector3d({7.0, -1.0, -1.005})}); //landing platform 3
 
-        // TODO: 1.2 Publique variaveis no Blackboard
+        // 1.2 Publique variaveis no Blackboard
+        this->blackboard_set<std::vector<Base>>("bases", bases);
+        this->blackboard_set<Eigen::Vector3d>("home_position", home_pos);
+        this->blackboard_set<bool>("finished_bases", false);
+        this->blackboard_set<float>("initial_yaw", orientation[2]);
+        this->blackboard_set<float>("takeoff_height", -3.0);
 
+        // 1.3 Adicione os Estados
+        this->add_state("INITIAL TAKEOFF", std::make_unique<InitialTakeoffState>());
+        this->add_state("VISIT BASE", std::make_unique<VisitBasesState>());
+        this->add_state("LANDING", std::make_unique<LandingState>());
+        this->add_state("TAKEOFF", std::make_unique<TakeoffState>());
+        this->add_state("RETURN HOME", std::make_unique<ReturnHomeState>());
 
-        // TODO: 1.3 Adicione os Estados
+        //1.4 Adicione as Transições
 
+        // Initial Takeoff transitions
+        this->add_transitions("INITIAL TAKEOFF", {{"INITIAL TAKEOFF COMPLETED", "VISIT BASE"},{"SEG FAULT", "ERROR"}});
 
-        //TODO: 1.4 Adicione as Transições
+        // Visit Base transitions
+        this->add_transitions("VISIT BASE", {{"ARRIVED AT BASE", "LANDING"},{"SEG FAULT", "ERROR"}});
 
+        // Landing transitions
+        this->add_transitions("LANDING", {{"LANDED", "TAKEOFF"},{"SEG FAULT", "ERROR"}});
+
+        // Takeoff transitions
+        this->add_transitions("TAKEOFF",{
+                                {"NEXT BASE", "VISIT BASE"},
+                                {"FINISHED BASES", "RETURN HOME"},
+                                {"SEG FAULT", "ERROR"}});
+
+        // Return Home transitions
+        this->add_transitions("RETURN HOME", {{"AT HOME", "FINISHED"},{"SEG FAULT", "ERROR"}});
         
     }
 };
